@@ -25,4 +25,14 @@ export class RecipeService {
         .setItem(this.localStorageKey, JSON.stringify(initialRecipes));
     }
   }
+
+  getRecipeList(): Promise<Recipe[]> {
+    // Reject if somehow the recipes are not in local storage, whatever
+    if (!localStorage.getItem(this.localStorageKey)) {
+      return Promise.reject('Nothing in local storage');
+    }
+
+    return Promise.resolve(
+      JSON.parse(localStorage.getItem(this.localStorageKey)));
+  }
 }
