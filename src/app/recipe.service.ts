@@ -37,4 +37,9 @@ export class RecipeService {
     return Promise.resolve(
       JSON.parse(localStorage.getItem(this.localStorageKey)));
   }
+
+  getRecipe(id: number): Promise<Recipe> {
+    return this.getRecipeList()
+      .then(recipes => recipes.find(recipe => recipe.id === id));
+  }
 }

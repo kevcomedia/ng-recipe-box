@@ -1,0 +1,8 @@
+<section *ngIf="selectedRecipe">
+  <h2>{{selectedRecipe.name}}</h2>
+  <ul>
+    <li *ngFor="let ingredient of selectedRecipe.ingredients">
+      {{ingredient}}
+    </li>
+  </ul>
+</section>
