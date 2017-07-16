@@ -12,10 +12,12 @@ export class RecipeService {
     if (!localStorage.getItem(this.localStorageKey)) {
       const initialRecipes: Recipe[] = [
         {
+          id: 1,
           name: 'Fluffy Rice',
           ingredients: ['rice', 'water']
         },
         {
+          id: 2,
           name: 'Pork Adobo',
           ingredients: ['pork', 'vinegar', 'soy sauce', 'onions', 'oil']
         }
