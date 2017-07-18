@@ -11,7 +11,10 @@ export class AppComponent implements OnInit {
   title = 'app';
   recipes: Recipe[];
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService) {
+    recipeService.recipesUpdated$
+      .subscribe(recipes => this.recipes = recipes);
+  }
 
   ngOnInit(): void {
     this.recipeService.getRecipeList()

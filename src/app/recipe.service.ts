@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 import { Recipe } from './recipe';
 
 @Injectable()
 export class RecipeService {
   private localStorageKey = '_gckev_ng-recipes';
+
+  private recipesUpdatedSource = new Subject<Recipe[]>();
+  recipesUpdated$ = this.recipesUpdatedSource.asObservable();
 
   /**
    * Creates a stringified array of recipes on local storage if none is found.
@@ -56,6 +60,7 @@ export class RecipeService {
         };
         recipes.push(newRecipe);
         this.updateLocalStorage(recipes);
+        this.recipesUpdatedSource.next(recipes);
         return newRecipe;
       });
   }
