@@ -43,4 +43,24 @@ export class RecipeService {
     return this.getRecipeList()
       .then(recipes => recipes.find(recipe => recipe.id === id));
   }
+
+  addRecipe({name = '', ingredients = []} = {}): Promise<Recipe> {
+    return this.getRecipeList()
+      .then(recipes => {
+        // the last recipe in storage should have the largest id
+        const largestId = recipes[recipes.length - 1].id;
+        const newRecipe = {
+          id: largestId + 1,
+          name,
+          ingredients
+        };
+        recipes.push(newRecipe);
+        this.updateLocalStorage(recipes);
+        return newRecipe;
+      });
+  }
+
+  private updateLocalStorage(recipes: Recipe[]): void {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(recipes));
+  }
 }
