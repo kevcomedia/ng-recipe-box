@@ -8,7 +8,7 @@ export class RecipeService {
   /**
    * Creates a stringified array of recipes on local storage if none is found.
    */
-  initializeRecipeList(): void {
+  private initializeRecipeList(): Promise<Recipe[]> {
     if (!localStorage.getItem(this.localStorageKey)) {
       const initialRecipes: Recipe[] = [
         {
@@ -25,13 +25,14 @@ export class RecipeService {
 
       localStorage
         .setItem(this.localStorageKey, JSON.stringify(initialRecipes));
+
+      return Promise.resolve(initialRecipes);
     }
   }
 
   getRecipeList(): Promise<Recipe[]> {
-    // Reject if somehow the recipes are not in local storage, whatever
     if (!localStorage.getItem(this.localStorageKey)) {
-      return Promise.reject('Nothing in local storage');
+      return this.initializeRecipeList();
     }
 
     return Promise.resolve(
