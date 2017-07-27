@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -18,7 +19,8 @@ export class RecipeDialogComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
@@ -58,5 +60,9 @@ export class RecipeDialogComponent implements OnInit {
 
         p.then(r => this.router.navigate(['recipe', r.id]));
       });
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

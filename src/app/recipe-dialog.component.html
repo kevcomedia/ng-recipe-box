@@ -3,5 +3,6 @@
     <label>Name <input [(ngModel)]="name" name="name" autofocus required></label>
     <label>Ingredients <textarea [(ngModel)]="ingredients" name="ingredients" required></textarea></label>
     <button>{{buttonText}}</button>
+    <button type="button" (click)="goBack()">Back</button>
   </form>
 </section>
