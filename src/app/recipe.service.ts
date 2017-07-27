@@ -89,7 +89,7 @@ export class RecipeService {
   deleteRecipe(id: number): Promise<Recipe> {
     return this.getRecipeList()
       .then(recipes => {
-        const recipeToDelete = recipes.splice(recipes.findIndex(recipe => recipe.id === id))[0];
+        const recipeToDelete = recipes.splice(recipes.findIndex(recipe => recipe.id === id), 1)[0];
 
         this.updateLocalStorage(recipes);
         this.recipesUpdatedSource.next(recipes);
