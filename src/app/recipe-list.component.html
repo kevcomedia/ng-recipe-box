@@ -1,0 +1,9 @@
+<nav>
+  <a routerLink="/new">Add</a>
+
+  <ul *ngIf="recipes">
+    <li *ngFor="let recipe of recipes">
+      <a [routerLink]="['recipe', recipe.id]">{{recipe.name}}</a>
+    </li>
+  </ul>
+</nav>
