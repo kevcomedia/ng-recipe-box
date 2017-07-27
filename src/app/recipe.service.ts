@@ -52,7 +52,7 @@ export class RecipeService {
     return this.getRecipeList()
       .then(recipes => {
         // the last recipe in storage should have the largest id
-        const largestId = recipes[recipes.length - 1].id;
+        const largestId = recipes.length ? recipes[recipes.length - 1].id : 1;
         const newRecipe = {
           id: largestId + 1,
           name,
