@@ -1,7 +1,15 @@
 <section *ngIf="selectedRecipe">
   <header>
     <h2>{{selectedRecipe.name}}</h2>
-    <a routerLink="edit">Edit</a>
+    <div *ngIf="!willDelete">
+      <a routerLink="edit">Edit</a>
+      <button (click)="showDeleteConfirmation()">Delete</button>
+    </div>
+    <div *ngIf="willDelete">
+      <p>Do you really want to delete this recipe?</p>
+      <button (click)="deleteRecipe()">Delete</button>
+      <button (click)="hideDeleteConfirmation()">Cancel</button>
+    </div>
   </header>
   <ul>
     <li *ngFor="let ingredient of selectedRecipe.ingredients">

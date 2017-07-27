@@ -85,4 +85,15 @@ export class RecipeService {
   private updateLocalStorage(recipes: Recipe[]): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(recipes));
   }
+
+  deleteRecipe(id: number): Promise<Recipe> {
+    return this.getRecipeList()
+      .then(recipes => {
+        const recipeToDelete = recipes.splice(recipes.findIndex(recipe => recipe.id === id))[0];
+
+        this.updateLocalStorage(recipes);
+        this.recipesUpdatedSource.next(recipes);
+        return recipeToDelete;
+      });
+  }
 }
