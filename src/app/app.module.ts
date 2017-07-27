@@ -25,6 +25,10 @@ import { RecipeService } from './recipe.service';
         component: RecipeDetailComponent
       },
       {
+        path: 'recipe/:id/edit',
+        component: RecipeDialogComponent
+      },
+      {
         path: 'new',
         component: RecipeDialogComponent
       }

@@ -1,5 +1,8 @@
 <section *ngIf="selectedRecipe">
-  <h2>{{selectedRecipe.name}}</h2>
+  <header>
+    <h2>{{selectedRecipe.name}}</h2>
+    <a routerLink="edit">Edit</a>
+  </header>
   <ul>
     <li *ngFor="let ingredient of selectedRecipe.ingredients">
       {{ingredient}}

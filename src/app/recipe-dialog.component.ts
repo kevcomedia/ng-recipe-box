@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
+import 'rxjs/add/operator/switchMap';
 
 import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
@@ -8,20 +10,53 @@ import { RecipeService } from './recipe.service';
   selector: 'app-recipe-dialog',
   templateUrl: './recipe-dialog.component.html'
 })
-export class RecipeDialogComponent {
+export class RecipeDialogComponent implements OnInit {
   name: string;
   ingredients: string;
+  buttonText: string;
 
   constructor(
     private recipeService: RecipeService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
+  ngOnInit(): void {
+    this.route.paramMap
+      .switchMap((params: ParamMap) =>
+        this.recipeService.getRecipe(+params.get('id')))
+      .subscribe((recipe?: Recipe) => {
+        if (recipe) {
+          this.name = recipe.name;
+          this.ingredients = recipe.ingredients.join('\n');
+          this.buttonText = 'Save';
+        } else {
+          this.buttonText = 'Add';
+        }
+      });
+  }
+
   saveRecipe(): void {
-    this.recipeService.addRecipe({
-      name: this.name,
-      ingredients: this.ingredients.split('\n')
-    })
-    .then(recipe => this.router.navigate(['recipe', recipe.id]));
+    this.route.paramMap
+      .switchMap((params: ParamMap) =>
+        this.recipeService.getRecipe(+params.get('id')))
+      .subscribe((recipe?: Recipe) => {
+        let p: Promise<Recipe>;
+
+        if (recipe) {
+          p = this.recipeService.editRecipe({
+            id: recipe.id,
+            newName: this.name,
+            newIngredients: this.ingredients.split('\n')
+          });
+        } else {
+          p = this.recipeService.addRecipe({
+            name: this.name,
+            ingredients: this.ingredients.split('\n')
+          });
+        }
+
+        p.then(r => this.router.navigate(['recipe', r.id]));
+      });
   }
 }

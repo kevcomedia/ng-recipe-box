@@ -65,6 +65,23 @@ export class RecipeService {
       });
   }
 
+  editRecipe({id = 0, newName = '', newIngredients = []} = {}): Promise<Recipe> {
+    return this.getRecipeList()
+      .then(recipes => {
+        const recipeToEdit = recipes.find(recipe => recipe.id === id);
+        if (!recipeToEdit) {
+          return null;
+        }
+
+        recipeToEdit.name = newName;
+        recipeToEdit.ingredients = newIngredients;
+
+        this.updateLocalStorage(recipes);
+        this.recipesUpdatedSource.next(recipes);
+        return recipeToEdit;
+      });
+  }
+
   private updateLocalStorage(recipes: Recipe[]): void {
     localStorage.setItem(this.localStorageKey, JSON.stringify(recipes));
   }

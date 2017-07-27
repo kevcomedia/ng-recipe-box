@@ -2,6 +2,6 @@
   <form (ngSubmit)="saveRecipe()">
     <label>Name <input [(ngModel)]="name" name="name" autofocus required></label>
     <label>Ingredients <textarea [(ngModel)]="ingredients" name="ingredients" required></textarea></label>
-    <button>Add</button>
+    <button>{{buttonText}}</button>
   </form>
 </section>
