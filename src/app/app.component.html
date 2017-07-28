@@ -1,2 +1,10 @@
-<app-recipe-list [recipes]="recipes"></app-recipe-list>
-<router-outlet></router-outlet>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <app-recipe-list [recipes]="recipes"></app-recipe-list>
+    </div>
+    <div class="col-sm-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
