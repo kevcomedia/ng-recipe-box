@@ -1,0 +1,5 @@
+.container,
+.row,
+[class*="col-sm"] {
+  height: 100%;
+}

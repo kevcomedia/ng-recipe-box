@@ -1,0 +1,14 @@
+nav {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100%;
+}
+
+header {
+  flex: none;
+}
+
+.list-group {
+  flex: 1;
+  overflow: auto;
+}
