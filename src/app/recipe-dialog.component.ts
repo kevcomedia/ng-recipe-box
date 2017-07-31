@@ -31,9 +31,9 @@ export class RecipeDialogComponent implements OnInit {
         if (recipe) {
           this.name = recipe.name;
           this.ingredients = recipe.ingredients.join('\n');
-          this.buttonText = 'Save';
+          this.buttonText = 'Save Changes';
         } else {
-          this.buttonText = 'Add';
+          this.buttonText = 'Add Recipe';
         }
       });
   }
