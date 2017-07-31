@@ -3,3 +3,7 @@
 *::after {
   box-sizing: border-box;
 }
+body {
+  /* Necessary for top-fixed Bootstrap navbar */
+  padding-top: 82px;
+}
