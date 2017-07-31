@@ -1,2 +1,24 @@
-<app-recipe-list [recipes]="recipes"></app-recipe-list>
-<router-outlet></router-outlet>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <header class="nav-header">
+      <a class="navbar-brand" routerLink="/">Recipe Box</a>
+    </header>
+
+    <ul class="nav navbar-nav">
+      <li routerLinkActive="active">
+        <a routerLink="/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Recipe</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <app-recipe-list [recipes]="recipes"></app-recipe-list>
+    </div>
+    <div class="col-sm-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
