@@ -51,10 +51,9 @@ export class RecipeService {
   addRecipe({name = '', ingredients = []} = {}): Promise<Recipe> {
     return this.getRecipeList()
       .then(recipes => {
-        // the last recipe in storage should have the largest id
-        const largestId = recipes.length ? recipes[recipes.length - 1].id : 1;
         const newRecipe = {
-          id: largestId + 1,
+          // the last recipe in storage should have the largest id
+          id: recipes.length ? recipes[recipes.length - 1].id + 1 : 1,
           name,
           ingredients
         };
@@ -82,18 +81,19 @@ export class RecipeService {
       });
   }
 
-  private updateLocalStorage(recipes: Recipe[]): void {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(recipes));
-  }
-
   deleteRecipe(id: number): Promise<Recipe> {
     return this.getRecipeList()
       .then(recipes => {
-        const recipeToDelete = recipes.splice(recipes.findIndex(recipe => recipe.id === id), 1)[0];
+        const recipeToDelete
+          = recipes.splice(recipes.findIndex(recipe => recipe.id === id), 1)[0];
 
         this.updateLocalStorage(recipes);
         this.recipesUpdatedSource.next(recipes);
         return recipeToDelete;
       });
+  }
+
+  private updateLocalStorage(recipes: Recipe[]): void {
+    localStorage.setItem(this.localStorageKey, JSON.stringify(recipes));
   }
 }
