@@ -4,11 +4,9 @@ import { RecipeService } from './recipe.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  title = 'app';
   recipes: Recipe[];
 
   constructor(private recipeService: RecipeService) {

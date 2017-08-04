@@ -8,7 +8,6 @@ import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 
 @Component({
-  selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html'
 })
 export class RecipeFormComponent implements OnInit {
