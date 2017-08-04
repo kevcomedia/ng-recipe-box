@@ -1,12 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list.component';
 import { RecipeDetailComponent } from './recipe-detail.component';
-import { RecipeDialogComponent } from './recipe-dialog.component';
+import { RecipeFormComponent } from './recipe-form.component';
+
 import { RecipeService } from './recipe.service';
 
 @NgModule({
@@ -14,25 +16,12 @@ import { RecipeService } from './recipe.service';
     AppComponent,
     RecipeListComponent,
     RecipeDetailComponent,
-    RecipeDialogComponent
+    RecipeFormComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: 'recipe/:id',
-        component: RecipeDetailComponent
-      },
-      {
-        path: 'recipe/:id/edit',
-        component: RecipeDialogComponent
-      },
-      {
-        path: 'new',
-        component: RecipeDialogComponent
-      }
-    ])
+    AppRoutingModule
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent]

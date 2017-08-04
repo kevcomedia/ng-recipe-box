@@ -8,10 +8,9 @@ import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 
 @Component({
-  selector: 'app-recipe-dialog',
-  templateUrl: './recipe-dialog.component.html'
+  templateUrl: './recipe-form.component.html'
 })
-export class RecipeDialogComponent implements OnInit {
+export class RecipeFormComponent implements OnInit {
   name: string;
   ingredients: string;
   buttonText: string;

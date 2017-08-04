@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+
 import { Recipe } from './recipe';
 import { RecipeService } from './recipe.service';
 
 import 'rxjs/add/operator/switchMap';
 
 @Component({
-  selector: 'app-recipe-detail',
   templateUrl: './recipe-detail.component.html'
 })
 export class RecipeDetailComponent implements OnInit {
@@ -17,11 +17,12 @@ export class RecipeDetailComponent implements OnInit {
     private recipeService: RecipeService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.paramMap
-      .switchMap((params: ParamMap) => this.recipeService.getRecipe(+params.get('id')))
+      .switchMap((params: ParamMap) =>
+        this.recipeService.getRecipe(+params.get('id')))
       .subscribe(recipe => {
         this.selectedRecipe = recipe
         this.willDelete = false;
