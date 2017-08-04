@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list.component';
 import { RecipeDetailComponent } from './recipe-detail.component';
-import { RecipeDialogComponent } from './recipe-dialog.component';
+import { RecipeFormComponent } from './recipe-form.component';
 import { RecipeService } from './recipe.service';
 
 @NgModule({
@@ -14,7 +14,7 @@ import { RecipeService } from './recipe.service';
     AppComponent,
     RecipeListComponent,
     RecipeDetailComponent,
-    RecipeDialogComponent
+    RecipeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -26,11 +26,11 @@ import { RecipeService } from './recipe.service';
       },
       {
         path: 'recipe/:id/edit',
-        component: RecipeDialogComponent
+        component: RecipeFormComponent
       },
       {
         path: 'new',
-        component: RecipeDialogComponent
+        component: RecipeFormComponent
       }
     ])
   ],
