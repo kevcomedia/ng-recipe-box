@@ -1,0 +1,29 @@
+<section>
+  <form class="form-horizontal" (ngSubmit)="saveRecipe()">
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="name">Recipe Name</label>
+      <div class="col-sm-10">
+        <input class="form-control" [(ngModel)]="name" id="name" name="name" autofocus required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label" for="ingredients">Ingredients</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" [(ngModel)]="ingredients" id="ingredients" name="ingredients" rows="7" aria-describedby="ingredientsHelp" required></textarea>
+        <p class="help-block" id="ingredientsHelp">Put ingredients in their own lines</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-sm-10 col-sm-offset-2">
+        <div class="btn-group">
+          <button class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{buttonText}}</button>
+          <button class="btn btn-default" type="button" (click)="goBack()">Back</button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</section>
