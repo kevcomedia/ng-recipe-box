@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RecipeListComponent } from './recipe-list.component';
@@ -19,20 +20,7 @@ import { RecipeService } from './recipe.service';
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: 'recipe/:id',
-        component: RecipeDetailComponent
-      },
-      {
-        path: 'recipe/:id/edit',
-        component: RecipeFormComponent
-      },
-      {
-        path: 'new',
-        component: RecipeFormComponent
-      }
-    ])
+    AppRoutingModule
   ],
   providers: [RecipeService],
   bootstrap: [AppComponent]
