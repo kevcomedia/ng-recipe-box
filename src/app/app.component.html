@@ -4,9 +4,9 @@
       <a class="navbar-brand" routerLink="/">Recipe Box</a>
     </header>
 
-    <ul class="nav navbar-nav">
-      <li routerLinkActive="active">
-        <a routerLink="/new"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Recipe</a>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a href="https://github.com/kevcomedia/ng-recipe-box" target="_blank"><span class="fa fa-github fa-lg" aria-hidden="true"></span> GitHub</a>
       </li>
     </ul>
   </div>
@@ -15,6 +15,9 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-3">
+      <button class="btn btn-default btn-sm btn-block" routerLink="/new" routerLinkActive="active">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> New Recipe
+      </button>
       <app-recipe-list [recipes]="recipes"></app-recipe-list>
     </div>
     <div class="col-sm-9">
